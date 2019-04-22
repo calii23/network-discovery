@@ -1,0 +1,17 @@
+{
+  "name": "network-discovery",
+  "version": "1.0.0",
+  "description": "A simple service which can be used to discover the ip of the computer via udp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsd0fl1/network-discovery.git"
+  },
+  "main": "server.js",
+  "keywords": [
+    "network",
+    "discovery",
+    "udb"
+  ],
+  "author": "Maximilian Schelbach <maximilian@schelbach.de>",
+  "license": "ISC"
+}
