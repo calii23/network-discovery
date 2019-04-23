@@ -1,12 +1,17 @@
 {
   "name": "network-discovery",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A simple service which can be used to discover the ip of the computer via udp",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jsd0fl1/network-discovery.git"
   },
-  "main": "server.js",
+  "bin": {
+    "discover-service": "bin/client.js",
+    "discovery-service": "bin/server.js"
+  },
+  "main": "index.js",
+  "types": "index.d.ts",
   "keywords": [
     "network",
     "discovery",

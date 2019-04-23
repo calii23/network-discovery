@@ -1,28 +1,24 @@
 #!/usr/bin/env node
 if (process.argv.length !== 4 && process.argv.length !== 6) {
-  console.error(`Usage: ${process.argv[0]} ${process.argv[1]} [application] [version] {server port} {client port}`);
+  console.error(`Usage: ${process.argv[0]} ${process.argv[1]} [application] [version]`);
   process.exit(-1);
 }
 
 const application = process.argv[2];
 const version = process.argv[3];
 
-let serverPort = parseInt(process.argv[4]);
-let clientPort = parseInt(process.argv[5]);
-if (!serverPort || !clientPort) {
-  let hash = 0;
-  for (let i = 0; i < application.length; i++) {
-    hash = (31 * hash + application.charCodeAt(i)) & 0xffff;
-  }
-  while ((hash & 0xffff) < 0xff) {
-    hash = (hash * 0xffff) & 0xffff;
-  }
-  serverPort = hash & 0xffff;
-  while ((hash & 0xffff) < 0xff || (hash & 0xffff) === serverPort) {
-    hash = (hash * 0xffff) & 0xffff;
-  }
-  clientPort = hash & 0xffff;
+let hash = 0;
+for (let i = 0; i < application.length; i++) {
+  hash = (31 * hash + application.charCodeAt(i)) & 0xffff;
 }
+while ((hash & 0xffff) < 0xff) {
+  hash = (hash * 0xffff) & 0xffff;
+}
+const serverPort = hash & 0xffff;
+while ((hash & 0xffff) < 0xff || (hash & 0xffff) === serverPort) {
+  hash = (hash * 0xffff) & 0xffff;
+}
+const clientPort = hash & 0xffff;
 
 const dgram = require('dgram');
 const os = require('os');
