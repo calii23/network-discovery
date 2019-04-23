@@ -34,5 +34,6 @@ The structure of the packet is as the following:
 * application name in ascii
 * 2 bytes length of version (big endian)
 * version in ascii
+
 And the response:
 * 2 bytes magic number: 0xaf 0xcf
